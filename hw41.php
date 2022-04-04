@@ -1,31 +1,44 @@
-<! DOCTYPE html>
-<html lang = "kr" >
+<!DOCTYPE HTML>  
+<html>
 <head>
-<meta charset = "utf-8" >
 </head>
-<body>
-<form method = "POST" action = "hw41.php" >
-
-숫자 : <input type = "number" name = "testNumber" />
-<input type = "submit" value = "전송" />
-</form>
-</body>
-</html>
+<body>  
 
 <?php
-$n = $_POST["testNumber"];
+// define variables and set to empty values
+$name = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = test_input($_POST["name"]);
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+<h2>PHP Form Validation Example</h2>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  숫자: <input type="number" name="name">
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+<?php
 $sum = 0;
 $prod = 1;
 $mul = 1;
 
-echo("입력한 숫자 : " . $n . "<br>");
+echo("입력한 숫자 : " . $name . "<br>");
 
 
 echo ("<br>");
 echo ("<br>");
 
 
-for ($i= $prod; $i < $n + 1 ; $i++) { 
+for ($i= $prod; $i < $name + 1 ; $i++) { 
     echo $i;
     print($end = " ");
     $sum += $i;
@@ -37,9 +50,9 @@ echo ("<br>");
 
 
 echo("합계 : ");
-        for ($i = 1; $i <= $n; $i++) {
+        for ($i = 1; $i <= $name; $i++) {
             echo($i);
-            if ($i < $n) {
+            if ($i < $name) {
                 echo(" + ");
             }
         }
@@ -49,9 +62,9 @@ echo ("<br>");
 echo ("<br>");
 
         echo("팩토리얼 : ");
-        for ($i = 1; $i <= $n; $i++) {
+        for ($i = 1; $i <= $name; $i++) {
             echo($i);
-            if ($i < $n) {
+            if ($i < $name) {
                 echo(" * ");
             }
         }
@@ -60,7 +73,11 @@ echo ("<br>");
 echo ("<br>");
 echo ("<br>");
 
-echo "<br>1~$n 까지의 합: $sum<br>1~$n 까지의 곱:$mul";
+echo "<br>1~$name 까지의 합: $sum<br>1~$name 까지의 곱:$mul";
 
 ?>
+
+
+</body>
+</html>
 

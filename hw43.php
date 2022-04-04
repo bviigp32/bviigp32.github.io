@@ -1,47 +1,67 @@
-<! DOCTYPE html>
-<html lang = "kr" >
+<!DOCTYPE HTML>  
+<html>
 <head>
-<meta charset = "utf-8" >
 </head>
-<body>
-<form method = "POST" action = "hw43.php" >
+<body>  
 
-숫자 : <input type = "number" name = "testNumber" />
-<input type = "submit" value = "전송" />
-</form>
-</body>
-</html>
-<?PHP
-$num = $_POST["testNumber"];
+<?php
+// define variables and set to empty values
+$name = "";
 
-echo "입력한 숫자:$num";
-
-echo ("<br>");
-echo ("<br>");
-
-function fibo($num)
-{
-if($num ==  0 || $num ==1) return (1);
-return (fibo($num -1) + fibo($num -2));
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = test_input($_POST["name"]);
 }
-for ($i=1; $i <= $num; $i++)
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+<h2>PHP Form Validation Example</h2>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  숫자: <input type="number" name="name">
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+<?PHP
+if($name <= 100) {
+    echo "입력한 숫자:$name";
+
+echo ("<br>");
+echo ("<br>");
+
+function fibo($name)
+{
+if($name ==  0 || $name ==1) return (1);
+return (fibo($name-1) + fibo($name -2));
+}
+for ($i=1; $i <= $name; $i++)
 print(fibo($i - 1))."<br> ";
 
 ?>
- 
 
 <?php
 echo "-----------비례---------<br>";
-$num = $_POST["testNumber"];
 $a = 1;
 $b = 1;
 
-for($i = 0; $i < $num; $i++)
+for($i = 0; $i < $name; $i++)
 {
 echo $b / $a."<br> ";
 $c = $b +$a;
 $a = $b;
 $b = $c;
 }
+}
+else {
+    echo "100이하의 숫자를 입력하시오";
+}
 
 ?> 
+
+
+</body>
+</html>
