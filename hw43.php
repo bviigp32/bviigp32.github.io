@@ -28,10 +28,12 @@ function test_input($data) {
 </form>
 <?PHP
 if($name <= 100) {
-    echo "입력한 숫자:$name";
+    echo "입력한 숫자:$name<br>";
+    echo ("<br>");
+    echo " 피보나치 수열:";
 
 echo ("<br>");
-echo ("<br>");
+
 
 function fibo($name)
 {

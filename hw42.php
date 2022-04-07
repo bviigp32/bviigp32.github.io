@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>  
 <html>
 <head>
@@ -36,19 +35,31 @@ if($name >= 10 && $name <= 100) {
         $dada[$i] = rand(10, 100);
         
     }
+    echo "입력한 숫자:$name<br>";
+    
+    echo ("<br>");
+
+    echo "정렬하기 전: <br>";
+    for ($i=0; $i <= $name; $i++) { 
+        echo "index $i : $dada[$i] <br>";
+    }
+
     sort($dada);
     
-    echo "입력한 숫자:$name";
-    
-    echo ("<br>");
     echo ("<br>");
     
-    echo  '$dada : ';
+    echo "------------------------------sort적용 결과 -----------------------------------<br>";
     
-       print_r($dada);
-       
+    echo ("<br>");
     
-       echo  '<br>';
+    for ($i=0; $i <= $name; $i++) { 
+        echo "index $i : $dada[$i] <br>";
+        
+    }
+
+
+    
+    echo  '<br>';
 
 }
 else {
